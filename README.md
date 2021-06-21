@@ -1,2 +1,3 @@
 # ISBNBuilder
-Package which creates ISBNs
+
+Package that creates a `ISBN` based on input value if it's valid.
