@@ -20,3 +20,7 @@ let result = ISBNBuilder.buildISBN(rawValue: input)
 // return Result<ISBN, ISBNError>
 
 ```
+
+## License
+
+ISBNBuilder is available under the MIT license. See the LICENSE file for more info.
