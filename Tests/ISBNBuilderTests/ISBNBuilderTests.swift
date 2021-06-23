@@ -8,8 +8,8 @@ final class ISBNBuilderTests: XCTestCase {
         let expected = "ISBN: 0596520689"
 
         switch result {
-        case .success(let isbn):
-            XCTAssert(isbn.displayValue == expected)
+        case .success(let builderResult):
+            XCTAssert(builderResult.isbn.displayValue == expected)
         case .failure:
             XCTFail()
         }
@@ -21,8 +21,8 @@ final class ISBNBuilderTests: XCTestCase {
         let expected = "ISBN: 0596520689"
 
         switch result {
-        case .success(let isbn):
-            XCTAssert(isbn.displayValue == expected)
+        case .success(let builderResult):
+            XCTAssert(builderResult.isbn.displayValue == expected)
         case .failure:
             XCTFail()
         }
@@ -34,8 +34,8 @@ final class ISBNBuilderTests: XCTestCase {
         let expected = "ISBN: 0596520689"
 
         switch result {
-        case .success(let isbn):
-            XCTAssert(isbn.displayValue == expected)
+        case .success(let builderResult):
+            XCTAssert(builderResult.isbn.displayValue == expected)
         case .failure:
             XCTFail()
         }
@@ -60,8 +60,8 @@ final class ISBNBuilderTests: XCTestCase {
         let expected = "ISBN: 0596520689"
 
         switch result {
-        case .success(let isbn):
-            XCTAssert(isbn.displayValue == expected)
+        case .success(let builderResult):
+            XCTAssert(builderResult.isbn.displayValue == expected)
         case .failure:
             XCTFail()
         }
@@ -85,9 +85,9 @@ final class ISBNBuilderTests: XCTestCase {
         let expected = "ISBN: 9780596520687"
 
         switch result {
-        case .success(let isbn):
-            XCTAssert(isbn.displayValue == expected)
-            XCTAssert(isbn.format == .isbn13)
+        case .success(let builderResult):
+            XCTAssert(builderResult.isbn.displayValue == expected)
+            XCTAssert(builderResult.isbn.format == .isbn13)
         case .failure:
             XCTFail()
         }

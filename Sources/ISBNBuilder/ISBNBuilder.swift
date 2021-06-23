@@ -7,6 +7,12 @@ public final class ISBNBuilder {
         case invalid(value: String)
     }
 
+    public struct ISBNBuilderResult {
+        let isbn: ISBN
+        let foundRange: Range<String.Index>
+        let input: String
+    }
+
     internal enum ValidationFormat {
         case explicit
         case nonExplicit
@@ -51,8 +57,8 @@ public final class ISBNBuilder {
 
     /// Checks for validity of an International Standard Book Number and creates `ISBN` based on input
     /// - Parameter rawValue: Raw String of the ISBN value to validate
-    /// - Returns: `Result<ISBN, ISBNError>` of the result of the found `ISBN`
-    public static func buildISBN(rawValue: String) -> Result<ISBN, ISBNError> {
+    /// - Returns: `Result<ISBNBuilderResult, ISBNError>` of the result of the found `ISBN`
+    public static func buildISBN(rawValue: String) -> Result<ISBNBuilderResult, ISBNError> {
         let range = NSRange(
             rawValue.startIndex..<rawValue.endIndex,
             in: rawValue
@@ -75,9 +81,11 @@ public final class ISBNBuilder {
 
         // Extract the value
         if let isbn10SubstringRange = Range(match.range(withName: NamedCaptureGroup.isbn10Value.rawValue), in: rawValue) {
-            return .success(ISBN(string: String(rawValue[isbn10SubstringRange]), format: .isbn10))
+            let isbn = ISBN(string: String(rawValue[isbn10SubstringRange]), format: .isbn10)
+            return .success(.init(isbn: isbn, foundRange: isbn10SubstringRange, input: rawValue))
         } else if let isbn13SubstringRange = Range(match.range(withName: NamedCaptureGroup.isbn13Value.rawValue), in: rawValue) {
-            return .success(ISBN(string: String(rawValue[isbn13SubstringRange]), format: .isbn13))
+            let isbn = ISBN(string: String(rawValue[isbn13SubstringRange]), format: .isbn13)
+            return .success(.init(isbn: isbn, foundRange: isbn13SubstringRange, input: rawValue))
         } else {
             return .failure(.notFound)
         }
