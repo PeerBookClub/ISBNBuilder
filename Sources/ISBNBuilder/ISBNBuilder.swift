@@ -8,9 +8,9 @@ public final class ISBNBuilder {
     }
 
     public struct ISBNBuilderResult {
-        let isbn: ISBN
-        let foundRange: Range<String.Index>
-        let input: String
+        public let isbn: ISBN
+        public let foundRange: Range<String.Index>
+        public let input: String
     }
 
     internal enum ValidationFormat {
